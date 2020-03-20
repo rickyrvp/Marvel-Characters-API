@@ -26,6 +26,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-cache'
 	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compile group: 'commons-codec', name: 'commons-codec', version: '1.14'
+	compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.12'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	annotationProcessor 'org.projectlombok:lombok'
