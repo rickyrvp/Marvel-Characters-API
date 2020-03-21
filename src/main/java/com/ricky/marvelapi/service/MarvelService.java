@@ -2,6 +2,7 @@ package com.ricky.marvelapi.service;
 
 import com.ricky.marvelapi.model.CharacterDataWrapper;
 import com.ricky.marvelapi.model.MarvelCharacter;
+import com.ricky.marvelapi.util.Translator;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -30,6 +31,9 @@ public class MarvelService {
 	private String PUBLIC_KEY;
 	@Value("${marvel.api.private.key}")
 	private String PRIVATE_KEY;
+	
+	@Autowired
+	private Translator translator;
 	
     private final RestTemplate restTemplate;
 	
@@ -69,7 +73,7 @@ public class MarvelService {
     }
 	            
 
-	public MarvelCharacter getCharacterById(long characterId) {
+	public MarvelCharacter getCharacterById(long characterId, String languageCode) {
 		String timeStamp = Long.toString(System.currentTimeMillis());
 		try {
 			URI uri = new URIBuilder(BASE + CHARACTERS_PATH + "/" + characterId)
@@ -80,6 +84,7 @@ public class MarvelService {
 			
 			CharacterDataWrapper characterDataWrapper = restTemplate.getForObject(uri.toString(), CharacterDataWrapper.class);
 			MarvelCharacter marvelCharacter = characterDataWrapper.getData().getResults().get(0);
+			marvelCharacter.setDescription(translator.translate(marvelCharacter.getDescription(), languageCode));
 	        return marvelCharacter;
 		} catch (URISyntaxException e) {
 			throw new RuntimeException();
