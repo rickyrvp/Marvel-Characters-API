@@ -26,6 +26,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-cache'
 	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'co.aurasphere:jyandex:1.0.0'
 	compile group: 'commons-codec', name: 'commons-codec', version: '1.14'
 	compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.12'
 	compileOnly 'org.projectlombok:lombok'
